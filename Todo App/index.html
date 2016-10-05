@@ -1,0 +1,63 @@
+<html ng-app = "todoApp">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+        <script src = "angular.js"></script>
+         <script src = "app.js"></script>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
+         <title>Todo App</title>
+        
+    </head>
+
+    <body>
+        <h1>Todo App</h1>
+        
+        <div ng-controller="TodoCtrl as ctrl">
+                
+            <div>
+                <p>Add a Todo:</p>  
+                <input type="text" ng-model="ctrl.newTodo">
+                <button ng-click="ctrl.addNewTodo()">Add</button>
+            </div>
+            <br>
+            <div>
+                <p>Your Todos list:
+                <button ng-hide="ctrl.editMode" ng-click = "ctrl.triggerEditMode()">Edit</button> 
+                 <button  ng-show="ctrl.editMode" ng-click = "ctrl.triggerEditMode()">Done</button> </p>
+
+                <table class = "table table-striped">
+                
+                    <thead class = "thead-inverse"> 
+                    <tr><th>#</th>
+                    <th>Todo Event</th>
+                    <th>Delete From List</th>
+                    </tr>
+                    </thead>
+                    
+                    <tbody  >
+                    <tr ng-repeat = "todo in ctrl.todos track by $index">
+                    <td scope="row">{{$index + 1}}</td>
+
+                     <td>
+                    <span ng-hide="ctrl.editMode">{{todo}}</span> 
+                     <input ng-model="todo" ng-show="ctrl.editMode" type="text"></input>
+                    </td>
+                    <td>
+                     <button ng-hide="ctrl.editMode" ng-click="ctrl.delete($index)">Delete</button>
+                   </td>
+                   </tr>
+                   </tbody>
+                </table>  
+               
+            </div>    
+
+        </div>
+
+ 
+    </body>
+
+
+
+
+</html>
